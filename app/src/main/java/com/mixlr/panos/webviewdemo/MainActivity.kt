@@ -2,6 +2,7 @@ package com.mixlr.panos.webviewdemo
 
 import android.os.Bundle
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,9 @@ class MainActivity : AppCompatActivity() {
         wvDemo = WebView(this)
         wvDemo.settings.javaScriptEnabled = true
         wvDemo.addJavascriptInterface(WebAppInterface(this), "Android")
+        // Will allow the navigation links to make the user stay within the app and not
+        // open the default browser.
+        wvDemo.webViewClient = WebViewClient()
         setContentView(wvDemo)
     }
 
