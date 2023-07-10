@@ -1,11 +1,17 @@
 package com.mixlr.panos.webviewdemo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.webkit.WebViewCompat
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val logTag = "WebViewDemo"
+    }
+
     private lateinit var wvDemo: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         // open the default browser.
         wvDemo.webViewClient = MyWebViewClient(this)
         setContentView(wvDemo)
+
+        logWebViewPackageInfo()
     }
 
     override fun onStart() {
@@ -36,5 +44,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadHtml() {
         wvDemo.loadUrl("https://simple-html-with-javascript.vercel.app")
+    }
+
+    private fun logWebViewPackageInfo() {
+        val webViewPackageInfo = WebViewCompat.getCurrentWebViewPackage(this.applicationContext)
+        Log.d(MainActivity.logTag, "WebView version: ${webViewPackageInfo?.versionName}")
     }
 }
