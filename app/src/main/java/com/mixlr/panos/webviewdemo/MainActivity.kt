@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         // Will allow the navigation links to make the user stay within the app and not
         // open the default browser.
         wvDemo.webViewClient = MyWebViewClient(this)
+        wvDemo.webChromeClient = MyWebChromeClient()
         setContentView(wvDemo)
 
         logWebViewPackageInfo()
