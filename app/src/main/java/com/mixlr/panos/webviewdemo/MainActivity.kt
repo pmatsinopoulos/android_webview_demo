@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         wvDemo = WebView(this)
         wvDemo.settings.javaScriptEnabled = true
         wvDemo.addJavascriptInterface(WebAppInterface(this), "Android")
+        // By default the viewport is set to a large size. 980px wide. 
+        wvDemo.settings.useWideViewPort = true
         // Will allow the navigation links to make the user stay within the app and not
         // open the default browser.
         wvDemo.webViewClient = MyWebViewClient(this)
@@ -48,6 +50,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun logWebViewPackageInfo() {
         val webViewPackageInfo = WebViewCompat.getCurrentWebViewPackage(this.applicationContext)
-        Log.d(MainActivity.logTag, "WebView version: ${webViewPackageInfo?.versionName}")
+        Log.d(logTag, "WebView version: ${webViewPackageInfo?.versionName}")
     }
 }
