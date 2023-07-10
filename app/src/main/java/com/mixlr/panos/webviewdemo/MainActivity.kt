@@ -1,6 +1,7 @@
 package com.mixlr.panos.webviewdemo
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         loadHtml()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && wvDemo.canGoBack()) {
+            wvDemo.goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     private fun loadHtml() {
