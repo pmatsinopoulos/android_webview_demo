@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         wvDemo = WebView(this)
         wvDemo.settings.javaScriptEnabled = true
+        wvDemo.addJavascriptInterface(WebAppInterface(this), "Android")
         setContentView(wvDemo)
     }
 
